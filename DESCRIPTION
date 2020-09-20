@@ -1,6 +1,6 @@
-Package: placeholder
+Package: calculus-book
 Type: Book
-Title: Does not matter.
+Title: All About Calculus
 Version: 0.0.1
 Imports: bookdown
 Remotes: rstudio/bookdown
