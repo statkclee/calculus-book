@@ -24,3 +24,5 @@ description: "This is a minimal example of using the bookdown package to write a
 # 선수 과목 {-#prerequisites}
 
 미적분학을 학습하는데 필요한 사전 선수 지식에 대한 내용을 정리합니다.
+
+미적분학을 **...** 소개하게 되서 영광입니다.
