@@ -2,10 +2,9 @@
 title: "미적분학"
 subtitle: "데이터과학을 위한 미적분학"
 author:
-  name: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
-  url: https://www.facebook.com/groups/tidyverse/
-  affiliation: Tidyverse Korea
-  affiliation_url: https://www.facebook.com/groups/tidyverse/
+- name: "이광춘"
+  affiliation: "[Tidyverse Korea](https://www.facebook.com/groups/tidyverse/)"
+tags: ["데이터 과학", "Data Science", "데이터 사이언스", "distill", "웹사이트", "과학기술", "블로그"]
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
@@ -20,6 +19,11 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE,
+                      comment="", digits = 3, tidy = FALSE, prompt = FALSE, fig.align = 'center')
+```
 
 # 선수 과목 {-#prerequisites}
 

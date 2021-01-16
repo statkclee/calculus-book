@@ -1,4 +1,8 @@
 intro
+prime-factorization
+prime-number-algorithm
+prime-number-algorithm-decision
+prime-number-algorithm-decision-viz
 literature
 methods
 applications
