@@ -56,6 +56,20 @@
 <script src="libs/reactwidget-1.0.0/react-tools.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/reactable-binding-0.2.3/reactable.js"></script>
+<!--html_preserve-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59802572-23"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59802572-23');
+</script>
+
+
+<!--/html_preserve-->
 
 
 <style type="text/css">
@@ -139,7 +153,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>선수 과목</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> 들어가며</a></li>
+<li class="chapter" data-level="1" data-path="equation-to-graph.html"><a href="equation-to-graph.html"><i class="fa fa-check"></i><b>1</b> 수식 → 그래프</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="equation-to-graph.html"><a href="equation-to-graph.html#exponential-graph"><i class="fa fa-check"></i><b>1.1</b> 지수함수 그래프 <span class="citation">(Kittler <span>2019</span>)</span></a></li>
+<li class="chapter" data-level="1.2" data-path="equation-to-graph.html"><a href="equation-to-graph.html#simple-function"><i class="fa fa-check"></i><b>1.2</b> 간단한 함수</a></li>
+<li class="chapter" data-level="1.3" data-path="equation-to-graph.html"><a href="equation-to-graph.html#log-exp-function"><i class="fa fa-check"></i><b>1.3</b> 지수와 로그 함수</a></li>
+<li class="chapter" data-level="1.4" data-path="equation-to-graph.html"><a href="equation-to-graph.html#activation-function"><i class="fa fa-check"></i><b>1.4</b> 다양한 활성화 함수</a></li>
+<li class="chapter" data-level="1.5" data-path="equation-to-graph.html"><a href="equation-to-graph.html#trigonometric-function"><i class="fa fa-check"></i><b>1.5</b> 삼각 함수</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="prime-factorization.html"><a href="prime-factorization.html"><i class="fa fa-check"></i><b>2</b> 소인수 분해</a>
 <ul>
 <li class="chapter" data-level="" data-path="prime-factorization.html"><a href="prime-factorization.html#glossary"><i class="fa fa-check"></i>용어 정리</a></li>
@@ -214,117 +235,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>수학그래프를 그리는 방법을 살펴보자. 먼저 각 점을 데이터프레임으로 만들고 나서 <code>ggplot</code>으로 시각화한다.
 <code>geom_polygon()</code> 함수를 사용해서 각 점을 연결시키고 설명을 넣기 위해 각 꼭지점에 대해 라벨 표식을 위해 <code>point</code> 변수를 넣고
 <code>geom_text()</code> 함수로 준비한 라벨을 붙여 삼각형에 대해 이해를 쉽게 돕는다.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="draw-math-diagram.html#cb7-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb7-2"><a href="draw-math-diagram.html#cb7-2" aria-hidden="true"></a>triangle_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">coord_x   =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>), </span>
-<span id="cb7-3"><a href="draw-math-diagram.html#cb7-3" aria-hidden="true"></a>                       <span class="dt">coord_y   =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>),</span>
-<span id="cb7-4"><a href="draw-math-diagram.html#cb7-4" aria-hidden="true"></a>                       <span class="dt">group     =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), </span>
-<span id="cb7-5"><a href="draw-math-diagram.html#cb7-5" aria-hidden="true"></a>                       <span class="dt">point     =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-6"><a href="draw-math-diagram.html#cb7-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;{point}, ({coord_x}, {coord_y})&quot;</span>))</span>
-<span id="cb7-7"><a href="draw-math-diagram.html#cb7-7" aria-hidden="true"></a></span>
-<span id="cb7-8"><a href="draw-math-diagram.html#cb7-8" aria-hidden="true"></a>triangle_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-9"><a href="draw-math-diagram.html#cb7-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x     =</span> coord_x,</span>
-<span id="cb7-10"><a href="draw-math-diagram.html#cb7-10" aria-hidden="true"></a>             <span class="dt">y     =</span> coord_y,</span>
-<span id="cb7-11"><a href="draw-math-diagram.html#cb7-11" aria-hidden="true"></a>             <span class="dt">group =</span> group,</span>
-<span id="cb7-12"><a href="draw-math-diagram.html#cb7-12" aria-hidden="true"></a>             <span class="dt">label =</span> point)) <span class="op">+</span></span>
-<span id="cb7-13"><a href="draw-math-diagram.html#cb7-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb7-14"><a href="draw-math-diagram.html#cb7-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span><span class="st">&quot;midnightblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb7-15"><a href="draw-math-diagram.html#cb7-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb7-16"><a href="draw-math-diagram.html#cb7-16" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="draw-math-diagram.html#cb12-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb12-2"><a href="draw-math-diagram.html#cb12-2" aria-hidden="true"></a>triangle_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">coord_x   =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>), </span>
+<span id="cb12-3"><a href="draw-math-diagram.html#cb12-3" aria-hidden="true"></a>                       <span class="dt">coord_y   =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>),</span>
+<span id="cb12-4"><a href="draw-math-diagram.html#cb12-4" aria-hidden="true"></a>                       <span class="dt">group     =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), </span>
+<span id="cb12-5"><a href="draw-math-diagram.html#cb12-5" aria-hidden="true"></a>                       <span class="dt">point     =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-6"><a href="draw-math-diagram.html#cb12-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;{point}, ({coord_x}, {coord_y})&quot;</span>))</span>
+<span id="cb12-7"><a href="draw-math-diagram.html#cb12-7" aria-hidden="true"></a></span>
+<span id="cb12-8"><a href="draw-math-diagram.html#cb12-8" aria-hidden="true"></a>triangle_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-9"><a href="draw-math-diagram.html#cb12-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x     =</span> coord_x,</span>
+<span id="cb12-10"><a href="draw-math-diagram.html#cb12-10" aria-hidden="true"></a>             <span class="dt">y     =</span> coord_y,</span>
+<span id="cb12-11"><a href="draw-math-diagram.html#cb12-11" aria-hidden="true"></a>             <span class="dt">group =</span> group,</span>
+<span id="cb12-12"><a href="draw-math-diagram.html#cb12-12" aria-hidden="true"></a>             <span class="dt">label =</span> point)) <span class="op">+</span></span>
+<span id="cb12-13"><a href="draw-math-diagram.html#cb12-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-14"><a href="draw-math-diagram.html#cb12-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span><span class="st">&quot;midnightblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-15"><a href="draw-math-diagram.html#cb12-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb12-16"><a href="draw-math-diagram.html#cb12-16" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() </span></code></pre></div>
 <p><img src="calculus-book_files/figure-html/draw-triangle-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="math-rectangle" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> 사각형</h2>
 <p>사각형은 <code>ggplot</code>에서 먼저 4개의 좌표가 필요하여 이를 데이터프레임으로 제작하고 나서 <code>geom_rect()</code> 함수를 사용해서 시각화한다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="draw-math-diagram.html#cb8-1" aria-hidden="true"></a>rect_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">bottom_left  =</span> <span class="dv">1</span>,</span>
-<span id="cb8-2"><a href="draw-math-diagram.html#cb8-2" aria-hidden="true"></a>                   <span class="dt">bottom_right =</span> <span class="dv">3</span>,</span>
-<span id="cb8-3"><a href="draw-math-diagram.html#cb8-3" aria-hidden="true"></a>                   <span class="dt">top_left     =</span> <span class="dv">1</span>,</span>
-<span id="cb8-4"><a href="draw-math-diagram.html#cb8-4" aria-hidden="true"></a>                   <span class="dt">top_right    =</span> <span class="dv">3</span>)</span>
-<span id="cb8-5"><a href="draw-math-diagram.html#cb8-5" aria-hidden="true"></a>                   </span>
-<span id="cb8-6"><a href="draw-math-diagram.html#cb8-6" aria-hidden="true"></a></span>
-<span id="cb8-7"><a href="draw-math-diagram.html#cb8-7" aria-hidden="true"></a>rect_point_tbl &lt;-<span class="st"> </span>rect_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-8"><a href="draw-math-diagram.html#cb8-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;left&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-9"><a href="draw-math-diagram.html#cb8-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">x=</span>bottom_left, <span class="dt">y=</span>top_left) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-10"><a href="draw-math-diagram.html#cb8-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">bind_rows</span>(</span>
-<span id="cb8-11"><a href="draw-math-diagram.html#cb8-11" aria-hidden="true"></a>    rect_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-12"><a href="draw-math-diagram.html#cb8-12" aria-hidden="true"></a><span class="st">      </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;right&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-13"><a href="draw-math-diagram.html#cb8-13" aria-hidden="true"></a><span class="st">      </span><span class="kw">rename</span>(<span class="dt">x=</span>bottom_right, <span class="dt">y=</span>top_right)</span>
-<span id="cb8-14"><a href="draw-math-diagram.html#cb8-14" aria-hidden="true"></a>  ) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb8-15"><a href="draw-math-diagram.html#cb8-15" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;D&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-16"><a href="draw-math-diagram.html#cb8-16" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;{point}:({x},{y})&quot;</span>)) </span>
-<span id="cb8-17"><a href="draw-math-diagram.html#cb8-17" aria-hidden="true"></a>  </span>
-<span id="cb8-18"><a href="draw-math-diagram.html#cb8-18" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb8-19"><a href="draw-math-diagram.html#cb8-19" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">data =</span> rect_tbl, <span class="kw">aes</span>(<span class="dt">xmin=</span>bottom_left, <span class="dt">xmax=</span>bottom_right, <span class="dt">ymin=</span>top_left, <span class="dt">ymax=</span>top_right, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>), <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb8-20"><a href="draw-math-diagram.html#cb8-20" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data =</span> rect_point_tbl, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb8-21"><a href="draw-math-diagram.html#cb8-21" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span><span class="st">&quot;midnightblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb8-22"><a href="draw-math-diagram.html#cb8-22" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data =</span> rect_point_tbl, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">label =</span> point), <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb8-23"><a href="draw-math-diagram.html#cb8-23" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
-<span id="cb8-24"><a href="draw-math-diagram.html#cb8-24" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="draw-math-diagram.html#cb13-1" aria-hidden="true"></a>rect_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">bottom_left  =</span> <span class="dv">1</span>,</span>
+<span id="cb13-2"><a href="draw-math-diagram.html#cb13-2" aria-hidden="true"></a>                   <span class="dt">bottom_right =</span> <span class="dv">3</span>,</span>
+<span id="cb13-3"><a href="draw-math-diagram.html#cb13-3" aria-hidden="true"></a>                   <span class="dt">top_left     =</span> <span class="dv">1</span>,</span>
+<span id="cb13-4"><a href="draw-math-diagram.html#cb13-4" aria-hidden="true"></a>                   <span class="dt">top_right    =</span> <span class="dv">3</span>)</span>
+<span id="cb13-5"><a href="draw-math-diagram.html#cb13-5" aria-hidden="true"></a>                   </span>
+<span id="cb13-6"><a href="draw-math-diagram.html#cb13-6" aria-hidden="true"></a></span>
+<span id="cb13-7"><a href="draw-math-diagram.html#cb13-7" aria-hidden="true"></a>rect_point_tbl &lt;-<span class="st"> </span>rect_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-8"><a href="draw-math-diagram.html#cb13-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;left&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-9"><a href="draw-math-diagram.html#cb13-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">x=</span>bottom_left, <span class="dt">y=</span>top_left) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-10"><a href="draw-math-diagram.html#cb13-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">bind_rows</span>(</span>
+<span id="cb13-11"><a href="draw-math-diagram.html#cb13-11" aria-hidden="true"></a>    rect_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-12"><a href="draw-math-diagram.html#cb13-12" aria-hidden="true"></a><span class="st">      </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;right&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-13"><a href="draw-math-diagram.html#cb13-13" aria-hidden="true"></a><span class="st">      </span><span class="kw">rename</span>(<span class="dt">x=</span>bottom_right, <span class="dt">y=</span>top_right)</span>
+<span id="cb13-14"><a href="draw-math-diagram.html#cb13-14" aria-hidden="true"></a>  ) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb13-15"><a href="draw-math-diagram.html#cb13-15" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;D&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-16"><a href="draw-math-diagram.html#cb13-16" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;{point}:({x},{y})&quot;</span>)) </span>
+<span id="cb13-17"><a href="draw-math-diagram.html#cb13-17" aria-hidden="true"></a>  </span>
+<span id="cb13-18"><a href="draw-math-diagram.html#cb13-18" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-19"><a href="draw-math-diagram.html#cb13-19" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_rect</span>(<span class="dt">data =</span> rect_tbl, <span class="kw">aes</span>(<span class="dt">xmin=</span>bottom_left, <span class="dt">xmax=</span>bottom_right, <span class="dt">ymin=</span>top_left, <span class="dt">ymax=</span>top_right, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>), <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb13-20"><a href="draw-math-diagram.html#cb13-20" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data =</span> rect_point_tbl, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-21"><a href="draw-math-diagram.html#cb13-21" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span><span class="st">&quot;midnightblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-22"><a href="draw-math-diagram.html#cb13-22" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data =</span> rect_point_tbl, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">label =</span> point), <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb13-23"><a href="draw-math-diagram.html#cb13-23" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb13-24"><a href="draw-math-diagram.html#cb13-24" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="calculus-book_files/figure-html/draw-rectangle-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="math-circle" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> 원(circle)</h2>
 <p><code>ggforce</code> 팩키지 <code>geom_circle()</code> 함수를 사용하면 직관적으로 <span class="math inline">\((x, y)\)</span> 위치에 반지름 <span class="math inline">\(r\)</span>인 원을 그릴 수 있다.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="draw-math-diagram.html#cb9-1" aria-hidden="true"></a><span class="kw">library</span>(ggforce)</span>
-<span id="cb9-2"><a href="draw-math-diagram.html#cb9-2" aria-hidden="true"></a></span>
-<span id="cb9-3"><a href="draw-math-diagram.html#cb9-3" aria-hidden="true"></a>circle_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x_pos =</span> <span class="dv">1</span>, </span>
-<span id="cb9-4"><a href="draw-math-diagram.html#cb9-4" aria-hidden="true"></a>                     <span class="dt">y_pos =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-5"><a href="draw-math-diagram.html#cb9-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">center =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;중심:({x_pos},{y_pos})&quot;</span>)) </span>
-<span id="cb9-6"><a href="draw-math-diagram.html#cb9-6" aria-hidden="true"></a></span>
-<span id="cb9-7"><a href="draw-math-diagram.html#cb9-7" aria-hidden="true"></a>circle_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-8"><a href="draw-math-diagram.html#cb9-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x_pos, y_pos)) <span class="op">+</span></span>
-<span id="cb9-9"><a href="draw-math-diagram.html#cb9-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_circle</span>(<span class="kw">aes</span>(<span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">y0 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">1</span>), <span class="dt">inherit.aes =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb9-10"><a href="draw-math-diagram.html#cb9-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st">  </span></span>
-<span id="cb9-11"><a href="draw-math-diagram.html#cb9-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> center), <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb9-12"><a href="draw-math-diagram.html#cb9-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb9-13"><a href="draw-math-diagram.html#cb9-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
-<span id="cb9-14"><a href="draw-math-diagram.html#cb9-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="draw-math-diagram.html#cb14-1" aria-hidden="true"></a><span class="kw">library</span>(ggforce)</span>
+<span id="cb14-2"><a href="draw-math-diagram.html#cb14-2" aria-hidden="true"></a></span>
+<span id="cb14-3"><a href="draw-math-diagram.html#cb14-3" aria-hidden="true"></a>circle_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x_pos =</span> <span class="dv">1</span>, </span>
+<span id="cb14-4"><a href="draw-math-diagram.html#cb14-4" aria-hidden="true"></a>                     <span class="dt">y_pos =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-5"><a href="draw-math-diagram.html#cb14-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">center =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;중심:({x_pos},{y_pos})&quot;</span>)) </span>
+<span id="cb14-6"><a href="draw-math-diagram.html#cb14-6" aria-hidden="true"></a></span>
+<span id="cb14-7"><a href="draw-math-diagram.html#cb14-7" aria-hidden="true"></a>circle_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-8"><a href="draw-math-diagram.html#cb14-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x_pos, y_pos)) <span class="op">+</span></span>
+<span id="cb14-9"><a href="draw-math-diagram.html#cb14-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_circle</span>(<span class="kw">aes</span>(<span class="dt">x0 =</span> <span class="dv">1</span>, <span class="dt">y0 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">1</span>), <span class="dt">inherit.aes =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb14-10"><a href="draw-math-diagram.html#cb14-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb14-11"><a href="draw-math-diagram.html#cb14-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> center), <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb14-12"><a href="draw-math-diagram.html#cb14-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb14-13"><a href="draw-math-diagram.html#cb14-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb14-14"><a href="draw-math-diagram.html#cb14-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="calculus-book_files/figure-html/draw-circle-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="math-line" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> 선(line)</h2>
 <p><code>geom_segment()</code> 함수를 사용해서 직선을 <code>ggplot</code>으로 그릴 수 있다.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="draw-math-diagram.html#cb10-1" aria-hidden="true"></a>line_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), </span>
-<span id="cb10-2"><a href="draw-math-diagram.html#cb10-2" aria-hidden="true"></a>                   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb10-3"><a href="draw-math-diagram.html#cb10-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;점:({x}, {y})&quot;</span>)) </span>
-<span id="cb10-4"><a href="draw-math-diagram.html#cb10-4" aria-hidden="true"></a></span>
-<span id="cb10-5"><a href="draw-math-diagram.html#cb10-5" aria-hidden="true"></a>line_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb10-6"><a href="draw-math-diagram.html#cb10-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">label =</span> point)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb10-7"><a href="draw-math-diagram.html#cb10-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull, </span>
-<span id="cb10-8"><a href="draw-math-diagram.html#cb10-8" aria-hidden="true"></a>                     <span class="dt">y =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull, </span>
-<span id="cb10-9"><a href="draw-math-diagram.html#cb10-9" aria-hidden="true"></a>                     <span class="dt">xend =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull, </span>
-<span id="cb10-10"><a href="draw-math-diagram.html#cb10-10" aria-hidden="true"></a>                     <span class="dt">yend =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull),</span>
-<span id="cb10-11"><a href="draw-math-diagram.html#cb10-11" aria-hidden="true"></a>                 <span class="dt">size =</span> <span class="dv">2</span>, </span>
-<span id="cb10-12"><a href="draw-math-diagram.html#cb10-12" aria-hidden="true"></a>                 <span class="dt">linetype =</span> <span class="dv">1</span>,  </span>
-<span id="cb10-13"><a href="draw-math-diagram.html#cb10-13" aria-hidden="true"></a>                 <span class="dt">color =</span> <span class="st">&quot;midnightblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb10-14"><a href="draw-math-diagram.html#cb10-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)   <span class="op">+</span></span>
-<span id="cb10-15"><a href="draw-math-diagram.html#cb10-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb10-16"><a href="draw-math-diagram.html#cb10-16" aria-hidden="true"></a><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb10-17"><a href="draw-math-diagram.html#cb10-17" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
-<span id="cb10-18"><a href="draw-math-diagram.html#cb10-18" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="draw-math-diagram.html#cb15-1" aria-hidden="true"></a>line_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), </span>
+<span id="cb15-2"><a href="draw-math-diagram.html#cb15-2" aria-hidden="true"></a>                   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-3"><a href="draw-math-diagram.html#cb15-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">point =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;점:({x}, {y})&quot;</span>)) </span>
+<span id="cb15-4"><a href="draw-math-diagram.html#cb15-4" aria-hidden="true"></a></span>
+<span id="cb15-5"><a href="draw-math-diagram.html#cb15-5" aria-hidden="true"></a>line_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-6"><a href="draw-math-diagram.html#cb15-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">label =</span> point)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-7"><a href="draw-math-diagram.html#cb15-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull, </span>
+<span id="cb15-8"><a href="draw-math-diagram.html#cb15-8" aria-hidden="true"></a>                     <span class="dt">y =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull, </span>
+<span id="cb15-9"><a href="draw-math-diagram.html#cb15-9" aria-hidden="true"></a>                     <span class="dt">xend =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull, </span>
+<span id="cb15-10"><a href="draw-math-diagram.html#cb15-10" aria-hidden="true"></a>                     <span class="dt">yend =</span> line_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>pull),</span>
+<span id="cb15-11"><a href="draw-math-diagram.html#cb15-11" aria-hidden="true"></a>                 <span class="dt">size =</span> <span class="dv">2</span>, </span>
+<span id="cb15-12"><a href="draw-math-diagram.html#cb15-12" aria-hidden="true"></a>                 <span class="dt">linetype =</span> <span class="dv">1</span>,  </span>
+<span id="cb15-13"><a href="draw-math-diagram.html#cb15-13" aria-hidden="true"></a>                 <span class="dt">color =</span> <span class="st">&quot;midnightblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb15-14"><a href="draw-math-diagram.html#cb15-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)   <span class="op">+</span></span>
+<span id="cb15-15"><a href="draw-math-diagram.html#cb15-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb15-16"><a href="draw-math-diagram.html#cb15-16" aria-hidden="true"></a><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb15-17"><a href="draw-math-diagram.html#cb15-17" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb15-18"><a href="draw-math-diagram.html#cb15-18" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="calculus-book_files/figure-html/draw-line-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="draw-diagram" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> 일반화</h2>
 <p>함수를 사용해서 점의 위치를 지정하면 도형을 그릴 수 있도록 해보자.</p>
 <p><span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> 원의 중심을 특정하고 반지름 <span class="math inline">\(r\)</span>을 넣게 되면 이를 바로 원을 그릴 수 있는 함수를 작성하여 시각화한다.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="draw-math-diagram.html#cb11-1" aria-hidden="true"></a>draw_circle &lt;-<span class="st"> </span><span class="cf">function</span>(x_pos, y_pos, radius) {</span>
-<span id="cb11-2"><a href="draw-math-diagram.html#cb11-2" aria-hidden="true"></a>  </span>
-<span id="cb11-3"><a href="draw-math-diagram.html#cb11-3" aria-hidden="true"></a>  circle_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x_pos =</span> x_pos, </span>
-<span id="cb11-4"><a href="draw-math-diagram.html#cb11-4" aria-hidden="true"></a>                       <span class="dt">y_pos =</span> y_pos) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-5"><a href="draw-math-diagram.html#cb11-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">center =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;중심:({x_pos},{y_pos})&quot;</span>),</span>
-<span id="cb11-6"><a href="draw-math-diagram.html#cb11-6" aria-hidden="true"></a>         <span class="dt">radius =</span> radius) </span>
-<span id="cb11-7"><a href="draw-math-diagram.html#cb11-7" aria-hidden="true"></a></span>
-<span id="cb11-8"><a href="draw-math-diagram.html#cb11-8" aria-hidden="true"></a>  circle_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-9"><a href="draw-math-diagram.html#cb11-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x_pos, y_pos)) <span class="op">+</span></span>
-<span id="cb11-10"><a href="draw-math-diagram.html#cb11-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_circle</span>(<span class="kw">aes</span>(<span class="dt">x0 =</span> x_pos, <span class="dt">y0 =</span> y_pos, <span class="dt">r =</span> radius), <span class="dt">inherit.aes =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb11-11"><a href="draw-math-diagram.html#cb11-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st">  </span></span>
-<span id="cb11-12"><a href="draw-math-diagram.html#cb11-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> center), <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb11-13"><a href="draw-math-diagram.html#cb11-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb11-14"><a href="draw-math-diagram.html#cb11-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
-<span id="cb11-15"><a href="draw-math-diagram.html#cb11-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb11-16"><a href="draw-math-diagram.html#cb11-16" aria-hidden="true"></a>}</span>
-<span id="cb11-17"><a href="draw-math-diagram.html#cb11-17" aria-hidden="true"></a></span>
-<span id="cb11-18"><a href="draw-math-diagram.html#cb11-18" aria-hidden="true"></a><span class="kw">draw_circle</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="draw-math-diagram.html#cb16-1" aria-hidden="true"></a>draw_circle &lt;-<span class="st"> </span><span class="cf">function</span>(x_pos, y_pos, radius) {</span>
+<span id="cb16-2"><a href="draw-math-diagram.html#cb16-2" aria-hidden="true"></a>  </span>
+<span id="cb16-3"><a href="draw-math-diagram.html#cb16-3" aria-hidden="true"></a>  circle_tbl &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x_pos =</span> x_pos, </span>
+<span id="cb16-4"><a href="draw-math-diagram.html#cb16-4" aria-hidden="true"></a>                       <span class="dt">y_pos =</span> y_pos) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-5"><a href="draw-math-diagram.html#cb16-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">center =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;중심:({x_pos},{y_pos})&quot;</span>),</span>
+<span id="cb16-6"><a href="draw-math-diagram.html#cb16-6" aria-hidden="true"></a>         <span class="dt">radius =</span> radius) </span>
+<span id="cb16-7"><a href="draw-math-diagram.html#cb16-7" aria-hidden="true"></a></span>
+<span id="cb16-8"><a href="draw-math-diagram.html#cb16-8" aria-hidden="true"></a>  circle_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-9"><a href="draw-math-diagram.html#cb16-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x_pos, y_pos)) <span class="op">+</span></span>
+<span id="cb16-10"><a href="draw-math-diagram.html#cb16-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_circle</span>(<span class="kw">aes</span>(<span class="dt">x0 =</span> x_pos, <span class="dt">y0 =</span> y_pos, <span class="dt">r =</span> radius), <span class="dt">inherit.aes =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb16-11"><a href="draw-math-diagram.html#cb16-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb16-12"><a href="draw-math-diagram.html#cb16-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> center), <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">hjust=</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb16-13"><a href="draw-math-diagram.html#cb16-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb16-14"><a href="draw-math-diagram.html#cb16-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb16-15"><a href="draw-math-diagram.html#cb16-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb16-16"><a href="draw-math-diagram.html#cb16-16" aria-hidden="true"></a>}</span>
+<span id="cb16-17"><a href="draw-math-diagram.html#cb16-17" aria-hidden="true"></a></span>
+<span id="cb16-18"><a href="draw-math-diagram.html#cb16-18" aria-hidden="true"></a><span class="kw">draw_circle</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code></pre></div>
 <p><img src="calculus-book_files/figure-html/circle-function-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>선, 삼각형, 직사각형도 함수로 만들어서 점의 위치를 넣게 되면 도형을 그리게 되는 함수를 작성한다.</p>
 

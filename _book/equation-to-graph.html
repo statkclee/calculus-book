@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 수식 → 그래프1 | 미적분학</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 수식 → 그래프1 | 미적분학" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 수식 → 그래프1 | 미적분학" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+
+
+<meta name="date" content="2021-01-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="prime-factorization.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-16.12.0/react.min.js"></script>
+<script src="libs/react-16.12.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/reactable-binding-0.2.3/reactable.js"></script>
+<!--html_preserve-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59802572-23"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59802572-23');
+</script>
+
+
+<!--/html_preserve-->
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">미적분학</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>선수 과목</a></li>
+<li class="chapter" data-level="1" data-path="equation-to-graph.html"><a href="equation-to-graph.html"><i class="fa fa-check"></i><b>1</b> 수식 → 그래프</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="equation-to-graph.html"><a href="equation-to-graph.html#exponential-graph"><i class="fa fa-check"></i><b>1.1</b> 지수함수 그래프 <span class="citation">(Kittler <span>2019</span>)</span></a></li>
+<li class="chapter" data-level="1.2" data-path="equation-to-graph.html"><a href="equation-to-graph.html#simple-function"><i class="fa fa-check"></i><b>1.2</b> 간단한 함수</a></li>
+<li class="chapter" data-level="1.3" data-path="equation-to-graph.html"><a href="equation-to-graph.html#log-exp-function"><i class="fa fa-check"></i><b>1.3</b> 지수와 로그 함수</a></li>
+<li class="chapter" data-level="1.4" data-path="equation-to-graph.html"><a href="equation-to-graph.html#activation-function"><i class="fa fa-check"></i><b>1.4</b> 다양한 활성화 함수</a></li>
+<li class="chapter" data-level="1.5" data-path="equation-to-graph.html"><a href="equation-to-graph.html#trigonometric-function"><i class="fa fa-check"></i><b>1.5</b> 삼각 함수</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="prime-factorization.html"><a href="prime-factorization.html"><i class="fa fa-check"></i><b>2</b> 소인수 분해</a>
+<ul>
+<li class="chapter" data-level="" data-path="prime-factorization.html"><a href="prime-factorization.html#glossary"><i class="fa fa-check"></i>용어 정리</a></li>
+<li class="chapter" data-level="2.1" data-path="prime-factorization.html"><a href="prime-factorization.html#prime-number-algorithm"><i class="fa fa-check"></i><b>2.1</b> 소인수 분해 알고리즘</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="prime-factorization.html"><a href="prime-factorization.html#prime-number-algorithm-decision"><i class="fa fa-check"></i><b>2.1.1</b> 소인수 판정</a></li>
+<li class="chapter" data-level="2.1.2" data-path="prime-factorization.html"><a href="prime-factorization.html#prime-number-algorithm-decision-viz"><i class="fa fa-check"></i><b>2.1.2</b> 소인수 판정 시각화</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-math-diagram.html"><a href="draw-math-diagram.html"><i class="fa fa-check"></i><b>3</b> 수학 도형 그리기</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-math-diagram.html"><a href="draw-math-diagram.html#math-triangle"><i class="fa fa-check"></i><b>3.1</b> 삼각형</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-math-diagram.html"><a href="draw-math-diagram.html#math-rectangle"><i class="fa fa-check"></i><b>3.2</b> 사각형</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-math-diagram.html"><a href="draw-math-diagram.html#math-circle"><i class="fa fa-check"></i><b>3.3</b> 원(circle)</a></li>
+<li class="chapter" data-level="3.4" data-path="draw-math-diagram.html"><a href="draw-math-diagram.html#math-line"><i class="fa fa-check"></i><b>3.4</b> 선(line)</a></li>
+<li class="chapter" data-level="3.5" data-path="draw-math-diagram.html"><a href="draw-math-diagram.html#draw-diagram"><i class="fa fa-check"></i><b>3.5</b> 일반화</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">미적분학</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!-- <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+<link rel="stylesheet" type="text/css" href="css/swc.css" />  -->
+<link rel="alternate" type="application/rss+xml" title="Tidyverse Korea" href="https://www.facebook.com/groups/tidyverse/"/>
+<meta charset="UTF-8" />
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59802572-23"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59802572-23');
+</script>
+<div id="equation-to-graph" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> 수식 → 그래프<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h1>
+<div id="exponential-graph" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 지수함수 그래프 <span class="citation">(Kittler <a href="#ref-kittler2019math" role="doc-biblioref">2019</a>)</span></h2>
+<p>지수함수를 -10에서 10까지 그래프를 그려 시각화한다.</p>
+<p><span class="math display">\[y=\exp(x)\]</span></p>
+<p>수식을 <code>geom_function()</code>에 넣고 정의역을 <code>scale_x_continuous()</code>에 넣게 되면 해당 정의역 <code>-10 ~ +10</code>까지 그래프로 시각화를 한다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="equation-to-graph.html#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="equation-to-graph.html#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="equation-to-graph.html#cb1-3" aria-hidden="true"></a><span class="co"># exp_tbl &lt;- expand_grid(x_range = -10:10)</span></span>
+<span id="cb1-4"><a href="equation-to-graph.html#cb1-4" aria-hidden="true"></a><span class="co"># </span></span>
+<span id="cb1-5"><a href="equation-to-graph.html#cb1-5" aria-hidden="true"></a><span class="co"># exp_tbl %&gt;% </span></span>
+<span id="cb1-6"><a href="equation-to-graph.html#cb1-6" aria-hidden="true"></a><span class="co">#   ggplot(aes(x_range)) +</span></span>
+<span id="cb1-7"><a href="equation-to-graph.html#cb1-7" aria-hidden="true"></a><span class="co">#     geom_density() +</span></span>
+<span id="cb1-8"><a href="equation-to-graph.html#cb1-8" aria-hidden="true"></a><span class="co">#     geom_function(fun = function(x) exp(x))</span></span>
+<span id="cb1-9"><a href="equation-to-graph.html#cb1-9" aria-hidden="true"></a></span>
+<span id="cb1-10"><a href="equation-to-graph.html#cb1-10" aria-hidden="true"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb1-11"><a href="equation-to-graph.html#cb1-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
+<span id="cb1-12"><a href="equation-to-graph.html#cb1-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb1-13"><a href="equation-to-graph.html#cb1-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">exp</span>(x) ) <span class="op">+</span></span>
+<span id="cb1-14"><a href="equation-to-graph.html#cb1-14" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_light</span>() <span class="op">+</span></span>
+<span id="cb1-15"><a href="equation-to-graph.html#cb1-15" aria-hidden="true"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="calculus-book_files/figure-html/draw-exponetial-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="simple-function" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> 간단한 함수</h2>
+<p>간단한 10개의 함수를 <code>ggplot</code> 함수를 사용해서 시각화할 수 있다. <code>geom_function</code> 에 수학 함수를
+수학표현식으로 고쳐 작성한다. 그리고, <code>latex2exp</code>를 사용해서 간단한 <span class="math inline">\(LaTeX\)</span> 수식을 <code>ggplot</code>에 수식으로 표현하여 넣는다. 10개의 수식 그래프를 <code>patchwork</code>를 사용하여 한자의 그래프로 그려 넣는다.</p>
+<ul>
+<li><span class="math inline">\(y = x\)</span></li>
+<li><span class="math inline">\(y = |x|\)</span></li>
+<li><span class="math inline">\(y = x^2\)</span></li>
+<li><span class="math inline">\(y = x^3\)</span></li>
+<li><span class="math inline">\(y = x^4\)</span></li>
+<li><span class="math inline">\(y = x^5\)</span></li>
+<li><span class="math inline">\(y = \sqrt{x}\)</span></li>
+<li><span class="math inline">\(y = \sqrt[3]{x}\)</span></li>
+<li><span class="math inline">\(y = \frac{1}{x}\)</span></li>
+<li><span class="math inline">\(y = \frac{1}{x^2}\)</span></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="equation-to-graph.html#cb2-1" aria-hidden="true"></a><span class="kw">library</span>(patchwork)</span>
+<span id="cb2-2"><a href="equation-to-graph.html#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(latex2exp)</span>
+<span id="cb2-3"><a href="equation-to-graph.html#cb2-3" aria-hidden="true"></a><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>())</span>
+<span id="cb2-4"><a href="equation-to-graph.html#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="equation-to-graph.html#cb2-5" aria-hidden="true"></a>simple_eq_<span class="dv">01</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-6"><a href="equation-to-graph.html#cb2-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-7"><a href="equation-to-graph.html#cb2-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x, <span class="dt">color=</span><span class="st">&quot;red&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-8"><a href="equation-to-graph.html#cb2-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=x&quot;</span>)))</span>
+<span id="cb2-9"><a href="equation-to-graph.html#cb2-9" aria-hidden="true"></a></span>
+<span id="cb2-10"><a href="equation-to-graph.html#cb2-10" aria-hidden="true"></a>simple_eq_<span class="dv">02</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-11"><a href="equation-to-graph.html#cb2-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-12"><a href="equation-to-graph.html#cb2-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">abs</span>(x), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-13"><a href="equation-to-graph.html#cb2-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=|x|&quot;</span>)))</span>
+<span id="cb2-14"><a href="equation-to-graph.html#cb2-14" aria-hidden="true"></a></span>
+<span id="cb2-15"><a href="equation-to-graph.html#cb2-15" aria-hidden="true"></a>simple_eq_<span class="dv">03</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-16"><a href="equation-to-graph.html#cb2-16" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-17"><a href="equation-to-graph.html#cb2-17" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>,    <span class="dt">color=</span><span class="st">&quot;orange&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-18"><a href="equation-to-graph.html#cb2-18" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=x^2&quot;</span>)))</span>
+<span id="cb2-19"><a href="equation-to-graph.html#cb2-19" aria-hidden="true"></a></span>
+<span id="cb2-20"><a href="equation-to-graph.html#cb2-20" aria-hidden="true"></a>simple_eq_<span class="dv">04</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-21"><a href="equation-to-graph.html#cb2-21" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-22"><a href="equation-to-graph.html#cb2-22" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">3</span>,    <span class="dt">color=</span><span class="st">&quot;black&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-23"><a href="equation-to-graph.html#cb2-23" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=x^3&quot;</span>)))</span>
+<span id="cb2-24"><a href="equation-to-graph.html#cb2-24" aria-hidden="true"></a></span>
+<span id="cb2-25"><a href="equation-to-graph.html#cb2-25" aria-hidden="true"></a>simple_eq_<span class="dv">05</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-26"><a href="equation-to-graph.html#cb2-26" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-27"><a href="equation-to-graph.html#cb2-27" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">4</span>,    <span class="dt">color=</span><span class="st">&quot;darkgray&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-28"><a href="equation-to-graph.html#cb2-28" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=x^4&quot;</span>)))</span>
+<span id="cb2-29"><a href="equation-to-graph.html#cb2-29" aria-hidden="true"></a></span>
+<span id="cb2-30"><a href="equation-to-graph.html#cb2-30" aria-hidden="true"></a>simple_eq_<span class="dv">06</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-31"><a href="equation-to-graph.html#cb2-31" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-32"><a href="equation-to-graph.html#cb2-32" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">5</span>,    <span class="dt">color=</span><span class="st">&quot;midnightblue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-33"><a href="equation-to-graph.html#cb2-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=x^5&quot;</span>)))</span>
+<span id="cb2-34"><a href="equation-to-graph.html#cb2-34" aria-hidden="true"></a></span>
+<span id="cb2-35"><a href="equation-to-graph.html#cb2-35" aria-hidden="true"></a>simple_eq_<span class="dv">07</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-36"><a href="equation-to-graph.html#cb2-36" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-37"><a href="equation-to-graph.html#cb2-37" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>),    <span class="dt">color=</span><span class="st">&quot;pink&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-38"><a href="equation-to-graph.html#cb2-38" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = </span><span class="ch">\\</span><span class="st">sqrt[2]_{x}&quot;</span>)))</span>
+<span id="cb2-39"><a href="equation-to-graph.html#cb2-39" aria-hidden="true"></a></span>
+<span id="cb2-40"><a href="equation-to-graph.html#cb2-40" aria-hidden="true"></a>simple_eq_<span class="dv">08</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-41"><a href="equation-to-graph.html#cb2-41" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-42"><a href="equation-to-graph.html#cb2-42" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>),    <span class="dt">color=</span><span class="st">&quot;violet&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-43"><a href="equation-to-graph.html#cb2-43" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = </span><span class="ch">\\</span><span class="st">sqrt[3]_{x}$&quot;</span>)))</span>
+<span id="cb2-44"><a href="equation-to-graph.html#cb2-44" aria-hidden="true"></a></span>
+<span id="cb2-45"><a href="equation-to-graph.html#cb2-45" aria-hidden="true"></a>simple_eq_<span class="dv">09</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-46"><a href="equation-to-graph.html#cb2-46" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-47"><a href="equation-to-graph.html#cb2-47" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>x,    <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-48"><a href="equation-to-graph.html#cb2-48" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = </span><span class="ch">\\</span><span class="st">frac{1}{x}$&quot;</span>)))</span>
+<span id="cb2-49"><a href="equation-to-graph.html#cb2-49" aria-hidden="true"></a></span>
+<span id="cb2-50"><a href="equation-to-graph.html#cb2-50" aria-hidden="true"></a>simple_eq_<span class="dv">10</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb2-51"><a href="equation-to-graph.html#cb2-51" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb2-52"><a href="equation-to-graph.html#cb2-52" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(x)<span class="op">^</span><span class="dv">2</span>,    <span class="dt">color=</span><span class="st">&quot;yellow&quot;</span> ) <span class="op">+</span></span>
+<span id="cb2-53"><a href="equation-to-graph.html#cb2-53" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = </span><span class="ch">\\</span><span class="st">frac{1}{x^2}$&quot;</span>)))</span>
+<span id="cb2-54"><a href="equation-to-graph.html#cb2-54" aria-hidden="true"></a>  </span>
+<span id="cb2-55"><a href="equation-to-graph.html#cb2-55" aria-hidden="true"></a>( simple_eq_<span class="dv">01</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">02</span> ) <span class="op">/</span><span class="st"> </span></span>
+<span id="cb2-56"><a href="equation-to-graph.html#cb2-56" aria-hidden="true"></a>( simple_eq_<span class="dv">03</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">04</span> ) <span class="op">/</span></span>
+<span id="cb2-57"><a href="equation-to-graph.html#cb2-57" aria-hidden="true"></a>( simple_eq_<span class="dv">05</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">06</span> ) <span class="op">/</span><span class="st">  </span></span>
+<span id="cb2-58"><a href="equation-to-graph.html#cb2-58" aria-hidden="true"></a>( simple_eq_<span class="dv">07</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">08</span> ) <span class="op">/</span></span>
+<span id="cb2-59"><a href="equation-to-graph.html#cb2-59" aria-hidden="true"></a>( simple_eq_<span class="dv">09</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">10</span> ) </span></code></pre></div>
+<p><img src="calculus-book_files/figure-html/draw-simple-function-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="log-exp-function" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> 지수와 로그 함수</h2>
+<p>다양한 지수와 로그 함수를 시각화해보자.</p>
+<ul>
+<li><span class="math inline">\(y = x!\)</span></li>
+<li><span class="math inline">\(y = 2^x\)</span></li>
+<li><span class="math inline">\(y = \frac{1}{\sqrt{x}}\)</span></li>
+<li><span class="math inline">\(y = exp(-x)\)</span></li>
+<li><span class="math inline">\(y = log(x)\)</span></li>
+<li><span class="math inline">\(y = log_2 (x)\)</span></li>
+<li><span class="math inline">\(y = log_{10} (x)\)</span></li>
+<li><span class="math inline">\(y = x \times log(x)\)</span></li>
+<li><span class="math inline">\(y = exp(x)\)</span></li>
+<li><span class="math inline">\(y = log(x)^2\)</span></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="equation-to-graph.html#cb3-1" aria-hidden="true"></a>simple_eq_<span class="dv">11</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-2"><a href="equation-to-graph.html#cb3-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-3"><a href="equation-to-graph.html#cb3-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">factorial</span>(x), <span class="dt">color=</span><span class="st">&quot;red&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-4"><a href="equation-to-graph.html#cb3-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=x!&quot;</span>)))</span>
+<span id="cb3-5"><a href="equation-to-graph.html#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="equation-to-graph.html#cb3-6" aria-hidden="true"></a>simple_eq_<span class="dv">12</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-7"><a href="equation-to-graph.html#cb3-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-8"><a href="equation-to-graph.html#cb3-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="op">^</span>x, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-9"><a href="equation-to-graph.html#cb3-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=2^x&quot;</span>)))</span>
+<span id="cb3-10"><a href="equation-to-graph.html#cb3-10" aria-hidden="true"></a></span>
+<span id="cb3-11"><a href="equation-to-graph.html#cb3-11" aria-hidden="true"></a>simple_eq_<span class="dv">13</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-12"><a href="equation-to-graph.html#cb3-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-13"><a href="equation-to-graph.html#cb3-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(x),    <span class="dt">color=</span><span class="st">&quot;orange&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-14"><a href="equation-to-graph.html#cb3-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=</span><span class="ch">\\</span><span class="st">frac{1}{</span><span class="ch">\\</span><span class="st">sqrt{x}}&quot;</span>)))</span>
+<span id="cb3-15"><a href="equation-to-graph.html#cb3-15" aria-hidden="true"></a></span>
+<span id="cb3-16"><a href="equation-to-graph.html#cb3-16" aria-hidden="true"></a>simple_eq_<span class="dv">14</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-17"><a href="equation-to-graph.html#cb3-17" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-18"><a href="equation-to-graph.html#cb3-18" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">exp</span>(<span class="op">-</span>x),    <span class="dt">color=</span><span class="st">&quot;black&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-19"><a href="equation-to-graph.html#cb3-19" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=exp(-x)&quot;</span>)))</span>
+<span id="cb3-20"><a href="equation-to-graph.html#cb3-20" aria-hidden="true"></a></span>
+<span id="cb3-21"><a href="equation-to-graph.html#cb3-21" aria-hidden="true"></a>simple_eq_<span class="dv">15</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-22"><a href="equation-to-graph.html#cb3-22" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-23"><a href="equation-to-graph.html#cb3-23" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">log</span>(x),    <span class="dt">color=</span><span class="st">&quot;darkgray&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-24"><a href="equation-to-graph.html#cb3-24" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=log(x)&quot;</span>)))</span>
+<span id="cb3-25"><a href="equation-to-graph.html#cb3-25" aria-hidden="true"></a></span>
+<span id="cb3-26"><a href="equation-to-graph.html#cb3-26" aria-hidden="true"></a>simple_eq_<span class="dv">16</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-27"><a href="equation-to-graph.html#cb3-27" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-28"><a href="equation-to-graph.html#cb3-28" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">log2</span>(x),    <span class="dt">color=</span><span class="st">&quot;midnightblue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-29"><a href="equation-to-graph.html#cb3-29" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=log_2 (x)&quot;</span>)))</span>
+<span id="cb3-30"><a href="equation-to-graph.html#cb3-30" aria-hidden="true"></a></span>
+<span id="cb3-31"><a href="equation-to-graph.html#cb3-31" aria-hidden="true"></a>simple_eq_<span class="dv">17</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-32"><a href="equation-to-graph.html#cb3-32" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-33"><a href="equation-to-graph.html#cb3-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">log10</span>(x),    <span class="dt">color=</span><span class="st">&quot;pink&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-34"><a href="equation-to-graph.html#cb3-34" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = log_{10} (x)&quot;</span>)))</span>
+<span id="cb3-35"><a href="equation-to-graph.html#cb3-35" aria-hidden="true"></a></span>
+<span id="cb3-36"><a href="equation-to-graph.html#cb3-36" aria-hidden="true"></a>simple_eq_<span class="dv">18</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-37"><a href="equation-to-graph.html#cb3-37" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-38"><a href="equation-to-graph.html#cb3-38" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) x <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(x),    <span class="dt">color=</span><span class="st">&quot;violet&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-39"><a href="equation-to-graph.html#cb3-39" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = x log(x)&quot;</span>)))</span>
+<span id="cb3-40"><a href="equation-to-graph.html#cb3-40" aria-hidden="true"></a></span>
+<span id="cb3-41"><a href="equation-to-graph.html#cb3-41" aria-hidden="true"></a>simple_eq_<span class="dv">19</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-42"><a href="equation-to-graph.html#cb3-42" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-43"><a href="equation-to-graph.html#cb3-43" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">exp</span>(x),    <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-44"><a href="equation-to-graph.html#cb3-44" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = exp(x)$&quot;</span>)))</span>
+<span id="cb3-45"><a href="equation-to-graph.html#cb3-45" aria-hidden="true"></a></span>
+<span id="cb3-46"><a href="equation-to-graph.html#cb3-46" aria-hidden="true"></a>simple_eq_<span class="dv">10</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb3-47"><a href="equation-to-graph.html#cb3-47" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb3-48"><a href="equation-to-graph.html#cb3-48" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">log</span>(x)<span class="op">^</span><span class="dv">2</span>,    <span class="dt">color=</span><span class="st">&quot;yellow&quot;</span> ) <span class="op">+</span></span>
+<span id="cb3-49"><a href="equation-to-graph.html#cb3-49" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = log(x)^2&quot;</span>)))</span>
+<span id="cb3-50"><a href="equation-to-graph.html#cb3-50" aria-hidden="true"></a>  </span>
+<span id="cb3-51"><a href="equation-to-graph.html#cb3-51" aria-hidden="true"></a>( simple_eq_<span class="dv">11</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">12</span> ) <span class="op">/</span><span class="st"> </span></span>
+<span id="cb3-52"><a href="equation-to-graph.html#cb3-52" aria-hidden="true"></a>( simple_eq_<span class="dv">13</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">14</span> ) <span class="op">/</span></span>
+<span id="cb3-53"><a href="equation-to-graph.html#cb3-53" aria-hidden="true"></a>( simple_eq_<span class="dv">15</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">16</span> ) <span class="op">/</span><span class="st">  </span></span>
+<span id="cb3-54"><a href="equation-to-graph.html#cb3-54" aria-hidden="true"></a>( simple_eq_<span class="dv">17</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">18</span> ) <span class="op">/</span></span>
+<span id="cb3-55"><a href="equation-to-graph.html#cb3-55" aria-hidden="true"></a>( simple_eq_<span class="dv">19</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">10</span> ) </span></code></pre></div>
+<p><img src="calculus-book_files/figure-html/draw-log-exp-function-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="activation-function" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> 다양한 활성화 함수</h2>
+<p>다양한 활성화(activation) 함수를 시각화해보자.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y = \frac{1}{1+exp(-x)} : Sigmoid Function\)</span></li>
+<li><span class="math inline">\(y = \frac{10}{1+exp(-x)} : 10 X Sigmoid Function\)</span></li>
+<li><span class="math inline">\(y = tanh(x)\)</span></li>
+<li><span class="math inline">\(y = \frac{exp(x)}{\sum{exp(x)}} : Softmax\)</span></li>
+<li><span class="math inline">\(y = rectifier(x)\)</span></li>
+<li><span class="math inline">\(y= softplus(x)\)</span></li>
+<li><span class="math inline">\(y = sign(x)\)</span></li>
+<li><span class="math inline">\(y = floor(x)\)</span></li>
+<li><span class="math inline">\(y = round(x)\)</span></li>
+<li><span class="math inline">\(y = ceiling(x)\)</span></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="equation-to-graph.html#cb4-1" aria-hidden="true"></a>simple_eq_<span class="dv">21</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-2"><a href="equation-to-graph.html#cb4-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-3"><a href="equation-to-graph.html#cb4-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>x)), <span class="dt">color=</span><span class="st">&quot;red&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-4"><a href="equation-to-graph.html#cb4-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y=</span><span class="ch">\\</span><span class="st">frac{1}{1+exp(-x)} : Sigmoid Function&quot;</span>)))</span>
+<span id="cb4-5"><a href="equation-to-graph.html#cb4-5" aria-hidden="true"></a></span>
+<span id="cb4-6"><a href="equation-to-graph.html#cb4-6" aria-hidden="true"></a>simple_eq_<span class="dv">22</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-7"><a href="equation-to-graph.html#cb4-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-8"><a href="equation-to-graph.html#cb4-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="dv">10</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>x)), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-9"><a href="equation-to-graph.html#cb4-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = </span><span class="ch">\\</span><span class="st">frac{10}{1+exp(-x)} : 10 X Sigmoid Function&quot;</span>)))</span>
+<span id="cb4-10"><a href="equation-to-graph.html#cb4-10" aria-hidden="true"></a></span>
+<span id="cb4-11"><a href="equation-to-graph.html#cb4-11" aria-hidden="true"></a>simple_eq_<span class="dv">23</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-12"><a href="equation-to-graph.html#cb4-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-13"><a href="equation-to-graph.html#cb4-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">tanh</span>(x),    <span class="dt">color=</span><span class="st">&quot;orange&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-14"><a href="equation-to-graph.html#cb4-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y= tanh(x)&quot;</span>)))</span>
+<span id="cb4-15"><a href="equation-to-graph.html#cb4-15" aria-hidden="true"></a></span>
+<span id="cb4-16"><a href="equation-to-graph.html#cb4-16" aria-hidden="true"></a>simple_eq_<span class="dv">24</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-17"><a href="equation-to-graph.html#cb4-17" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-18"><a href="equation-to-graph.html#cb4-18" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">exp</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">exp</span>(x)),    <span class="dt">color=</span><span class="st">&quot;black&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-19"><a href="equation-to-graph.html#cb4-19" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = </span><span class="ch">\\</span><span class="st">frac{exp(x)}{</span><span class="ch">\\</span><span class="st">sum{exp(x)}} : Softmax&quot;</span>)))</span>
+<span id="cb4-20"><a href="equation-to-graph.html#cb4-20" aria-hidden="true"></a></span>
+<span id="cb4-21"><a href="equation-to-graph.html#cb4-21" aria-hidden="true"></a>simple_eq_<span class="dv">25</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-22"><a href="equation-to-graph.html#cb4-22" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-23"><a href="equation-to-graph.html#cb4-23" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">pmax</span>(<span class="dv">0</span>, x),    <span class="dt">color=</span><span class="st">&quot;darkgray&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-24"><a href="equation-to-graph.html#cb4-24" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = rectifier(x)&quot;</span>)))</span>
+<span id="cb4-25"><a href="equation-to-graph.html#cb4-25" aria-hidden="true"></a></span>
+<span id="cb4-26"><a href="equation-to-graph.html#cb4-26" aria-hidden="true"></a>simple_eq_<span class="dv">26</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-27"><a href="equation-to-graph.html#cb4-27" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-28"><a href="equation-to-graph.html#cb4-28" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">log</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(x)),    <span class="dt">color=</span><span class="st">&quot;midnightblue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-29"><a href="equation-to-graph.html#cb4-29" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y= softplus(x)&quot;</span>)))</span>
+<span id="cb4-30"><a href="equation-to-graph.html#cb4-30" aria-hidden="true"></a></span>
+<span id="cb4-31"><a href="equation-to-graph.html#cb4-31" aria-hidden="true"></a>simple_eq_<span class="dv">27</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-32"><a href="equation-to-graph.html#cb4-32" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-33"><a href="equation-to-graph.html#cb4-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">sign</span>(x),    <span class="dt">color=</span><span class="st">&quot;pink&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-34"><a href="equation-to-graph.html#cb4-34" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = sign(x)&quot;</span>)))</span>
+<span id="cb4-35"><a href="equation-to-graph.html#cb4-35" aria-hidden="true"></a></span>
+<span id="cb4-36"><a href="equation-to-graph.html#cb4-36" aria-hidden="true"></a>simple_eq_<span class="dv">28</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-37"><a href="equation-to-graph.html#cb4-37" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-38"><a href="equation-to-graph.html#cb4-38" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">floor</span>(x),    <span class="dt">color=</span><span class="st">&quot;violet&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-39"><a href="equation-to-graph.html#cb4-39" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = floor(x)&quot;</span>)))</span>
+<span id="cb4-40"><a href="equation-to-graph.html#cb4-40" aria-hidden="true"></a></span>
+<span id="cb4-41"><a href="equation-to-graph.html#cb4-41" aria-hidden="true"></a>simple_eq_<span class="dv">29</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-42"><a href="equation-to-graph.html#cb4-42" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-43"><a href="equation-to-graph.html#cb4-43" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">round</span>(x),    <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-44"><a href="equation-to-graph.html#cb4-44" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = round(x)$&quot;</span>)))</span>
+<span id="cb4-45"><a href="equation-to-graph.html#cb4-45" aria-hidden="true"></a></span>
+<span id="cb4-46"><a href="equation-to-graph.html#cb4-46" aria-hidden="true"></a>simple_eq_<span class="dv">30</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb4-47"><a href="equation-to-graph.html#cb4-47" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb4-48"><a href="equation-to-graph.html#cb4-48" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">ceiling</span>(x),    <span class="dt">color=</span><span class="st">&quot;yellow&quot;</span> ) <span class="op">+</span></span>
+<span id="cb4-49"><a href="equation-to-graph.html#cb4-49" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = ceiling(x)&quot;</span>)))</span>
+<span id="cb4-50"><a href="equation-to-graph.html#cb4-50" aria-hidden="true"></a>  </span>
+<span id="cb4-51"><a href="equation-to-graph.html#cb4-51" aria-hidden="true"></a>( simple_eq_<span class="dv">21</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">22</span> ) <span class="op">/</span><span class="st"> </span></span>
+<span id="cb4-52"><a href="equation-to-graph.html#cb4-52" aria-hidden="true"></a>( simple_eq_<span class="dv">23</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">24</span> ) <span class="op">/</span></span>
+<span id="cb4-53"><a href="equation-to-graph.html#cb4-53" aria-hidden="true"></a>( simple_eq_<span class="dv">25</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">26</span> ) <span class="op">/</span><span class="st">  </span></span>
+<span id="cb4-54"><a href="equation-to-graph.html#cb4-54" aria-hidden="true"></a>( simple_eq_<span class="dv">27</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">28</span> ) <span class="op">/</span></span>
+<span id="cb4-55"><a href="equation-to-graph.html#cb4-55" aria-hidden="true"></a>( simple_eq_<span class="dv">29</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">30</span> ) </span></code></pre></div>
+<p><img src="calculus-book_files/figure-html/draw-activation-function-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="trigonometric-function" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> 삼각 함수</h2>
+<p>다양한 삼각(trigonometric) 함수를 시각화해보자.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y = sin(x)\)</span></li>
+<li><span class="math inline">\(y = sin(pi*x)\)</span></li>
+<li><span class="math inline">\(y= sinh(x)\)</span></li>
+<li><span class="math inline">\(y = asinh(x)\)</span></li>
+<li><span class="math inline">\(y = cos(x)\)</span></li>
+<li><span class="math inline">\(y = cospi(x)\)</span></li>
+<li><span class="math inline">\(y = cosh(x)\)</span></li>
+<li><span class="math inline">\(y = acosh(x)\)</span></li>
+<li><span class="math inline">\(y = tan(x)\)</span></li>
+<li><span class="math inline">\(y = tanpi(x)\)</span></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="equation-to-graph.html#cb5-1" aria-hidden="true"></a>simple_eq_<span class="dv">31</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-2"><a href="equation-to-graph.html#cb5-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-3"><a href="equation-to-graph.html#cb5-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">sin</span>(x), <span class="dt">color=</span><span class="st">&quot;red&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-4"><a href="equation-to-graph.html#cb5-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = sin(x)&quot;</span>)))</span>
+<span id="cb5-5"><a href="equation-to-graph.html#cb5-5" aria-hidden="true"></a></span>
+<span id="cb5-6"><a href="equation-to-graph.html#cb5-6" aria-hidden="true"></a>simple_eq_<span class="dv">32</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-7"><a href="equation-to-graph.html#cb5-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-8"><a href="equation-to-graph.html#cb5-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">sinpi</span>(x), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-9"><a href="equation-to-graph.html#cb5-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = sin(pi*x)&quot;</span>)))</span>
+<span id="cb5-10"><a href="equation-to-graph.html#cb5-10" aria-hidden="true"></a></span>
+<span id="cb5-11"><a href="equation-to-graph.html#cb5-11" aria-hidden="true"></a>simple_eq_<span class="dv">33</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-12"><a href="equation-to-graph.html#cb5-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-13"><a href="equation-to-graph.html#cb5-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">sinh</span>(x),    <span class="dt">color=</span><span class="st">&quot;orange&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-14"><a href="equation-to-graph.html#cb5-14" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y= sinh(x)&quot;</span>)))</span>
+<span id="cb5-15"><a href="equation-to-graph.html#cb5-15" aria-hidden="true"></a></span>
+<span id="cb5-16"><a href="equation-to-graph.html#cb5-16" aria-hidden="true"></a>simple_eq_<span class="dv">34</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-17"><a href="equation-to-graph.html#cb5-17" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-18"><a href="equation-to-graph.html#cb5-18" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">asinh</span>(x),    <span class="dt">color=</span><span class="st">&quot;black&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-19"><a href="equation-to-graph.html#cb5-19" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = asinh(x)&quot;</span>)))</span>
+<span id="cb5-20"><a href="equation-to-graph.html#cb5-20" aria-hidden="true"></a></span>
+<span id="cb5-21"><a href="equation-to-graph.html#cb5-21" aria-hidden="true"></a>simple_eq_<span class="dv">35</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-22"><a href="equation-to-graph.html#cb5-22" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-23"><a href="equation-to-graph.html#cb5-23" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">cos</span>(x),    <span class="dt">color=</span><span class="st">&quot;darkgray&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-24"><a href="equation-to-graph.html#cb5-24" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = cos(x)&quot;</span>)))</span>
+<span id="cb5-25"><a href="equation-to-graph.html#cb5-25" aria-hidden="true"></a></span>
+<span id="cb5-26"><a href="equation-to-graph.html#cb5-26" aria-hidden="true"></a>simple_eq_<span class="dv">36</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-27"><a href="equation-to-graph.html#cb5-27" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-28"><a href="equation-to-graph.html#cb5-28" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">cospi</span>(x),    <span class="dt">color=</span><span class="st">&quot;midnightblue&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-29"><a href="equation-to-graph.html#cb5-29" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = cospi(x)&quot;</span>)))</span>
+<span id="cb5-30"><a href="equation-to-graph.html#cb5-30" aria-hidden="true"></a></span>
+<span id="cb5-31"><a href="equation-to-graph.html#cb5-31" aria-hidden="true"></a>simple_eq_<span class="dv">37</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-32"><a href="equation-to-graph.html#cb5-32" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-33"><a href="equation-to-graph.html#cb5-33" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">cosh</span>(x),    <span class="dt">color=</span><span class="st">&quot;pink&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-34"><a href="equation-to-graph.html#cb5-34" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;y = cosh(x)&quot;</span>)))</span>
+<span id="cb5-35"><a href="equation-to-graph.html#cb5-35" aria-hidden="true"></a></span>
+<span id="cb5-36"><a href="equation-to-graph.html#cb5-36" aria-hidden="true"></a>simple_eq_<span class="dv">38</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-37"><a href="equation-to-graph.html#cb5-37" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-38"><a href="equation-to-graph.html#cb5-38" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">acosh</span>(x),    <span class="dt">color=</span><span class="st">&quot;violet&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-39"><a href="equation-to-graph.html#cb5-39" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = acosh(x)&quot;</span>)))</span>
+<span id="cb5-40"><a href="equation-to-graph.html#cb5-40" aria-hidden="true"></a></span>
+<span id="cb5-41"><a href="equation-to-graph.html#cb5-41" aria-hidden="true"></a>simple_eq_<span class="dv">39</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-42"><a href="equation-to-graph.html#cb5-42" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-43"><a href="equation-to-graph.html#cb5-43" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">tan</span>(x),    <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-44"><a href="equation-to-graph.html#cb5-44" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = tan(x)$&quot;</span>)))</span>
+<span id="cb5-45"><a href="equation-to-graph.html#cb5-45" aria-hidden="true"></a></span>
+<span id="cb5-46"><a href="equation-to-graph.html#cb5-46" aria-hidden="true"></a>simple_eq_<span class="dv">40</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb5-47"><a href="equation-to-graph.html#cb5-47" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb5-48"><a href="equation-to-graph.html#cb5-48" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_function</span>(<span class="dt">fun =</span> <span class="cf">function</span>(x) <span class="kw">tanpi</span>(x),    <span class="dt">color=</span><span class="st">&quot;yellow&quot;</span> ) <span class="op">+</span></span>
+<span id="cb5-49"><a href="equation-to-graph.html#cb5-49" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">TeX</span>(<span class="kw">c</span>(<span class="st">&quot;$y = tanpi(x)&quot;</span>)))</span>
+<span id="cb5-50"><a href="equation-to-graph.html#cb5-50" aria-hidden="true"></a>  </span>
+<span id="cb5-51"><a href="equation-to-graph.html#cb5-51" aria-hidden="true"></a>( simple_eq_<span class="dv">31</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">32</span> ) <span class="op">/</span><span class="st"> </span></span>
+<span id="cb5-52"><a href="equation-to-graph.html#cb5-52" aria-hidden="true"></a>( simple_eq_<span class="dv">33</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">34</span> ) <span class="op">/</span></span>
+<span id="cb5-53"><a href="equation-to-graph.html#cb5-53" aria-hidden="true"></a>( simple_eq_<span class="dv">35</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">36</span> ) <span class="op">/</span><span class="st">  </span></span>
+<span id="cb5-54"><a href="equation-to-graph.html#cb5-54" aria-hidden="true"></a>( simple_eq_<span class="dv">37</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">38</span> ) <span class="op">/</span></span>
+<span id="cb5-55"><a href="equation-to-graph.html#cb5-55" aria-hidden="true"></a>( simple_eq_<span class="dv">39</span> <span class="op">+</span><span class="st"> </span>simple_eq_<span class="dv">40</span> ) </span></code></pre></div>
+<p><img src="calculus-book_files/figure-html/draw-trigonometric-function-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-kittler2019math">
+<p>Kittler, Julius. 2019. “Overview of 40 Mathematical Functions in R.” towards data science. <a href="https://towardsdatascience.com/overview-of-40-mathematical-functions-in-r-4b4e138685ff">https://towardsdatascience.com/overview-of-40-mathematical-functions-in-r-4b4e138685ff</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">Draw a function as a continuous curve</a><a href="equation-to-graph.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+&nbsp;
+<hr />
+<p style="text-align: center;">데이터 과학자 <a href="https://github.com/statkclee/">이광춘</a> 저작</p>
+<p style="text-align: center;">
+    <span style="color: #808080;"><em>kwangchun.lee.7@gmail.com</em></span>
+</p>
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://education.rstudio.com/trainers/people/lee+kwangchun/" class="fa fa-registered"></a>
+    <a href="https://www.facebook.com/groups/tidyverse/" class="fa fa-facebook"></a>
+    <a href="https://www.linkedin.com/in/kwangchunlee/" class="fa fa-linkedin"></a>
+    <a href="https://github.com/statkclee/" class="fa fa-github"></a>
+</p>
+&nbsp;
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prime-factorization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/statkclee/calculus-book/edit/master/01-math-equation-to-curve.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["calculus-book.pdf", "calculus-book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

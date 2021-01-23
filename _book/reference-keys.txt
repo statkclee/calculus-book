@@ -1,4 +1,9 @@
-intro
+equation-to-graph
+exponential-graph
+simple-function
+log-exp-function
+activation-function
+trigonometric-function
 prime-factorization
 prime-number-algorithm
 prime-number-algorithm-decision

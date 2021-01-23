@@ -12,6 +12,7 @@ output:
     include:
       after_body: footer.html
       before_body: header.html
+      in_header: GA_script.html
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
