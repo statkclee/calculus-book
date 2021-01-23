@@ -3,7 +3,12 @@ prime-factorization
 prime-number-algorithm
 prime-number-algorithm-decision
 prime-number-algorithm-decision-viz
-literature
+draw-math-diagram
+math-triangle
+math-rectangle
+math-circle
+math-line
+draw-diagram
 methods
 applications
 example-one
